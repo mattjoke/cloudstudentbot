@@ -36,7 +36,7 @@ client.on('message', msg => {
             client.commands.get(command).execute(msg, args);
             return;
         } catch (error) {
-            console.log(error);
+            //console.log(error);
         }
     }
 
@@ -49,7 +49,7 @@ client.on('message', msg => {
     try {
         client.commands.get('msg').execute(msg, client);
     } catch (error) {
-        console.error(error);
+        //console.error(error);
     }
 });
 
