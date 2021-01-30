@@ -1,17 +1,15 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const fs = require('fs');
-const WordFilter = require('./commands/init');
 client.commands = new Discord.Collection();
+const fs = require('fs');
 
+const WordFilter = require('./commands/init');
 const prefix = '!';
 
 require('dotenv').config();
 
 client.on('ready', () => {
-    console.log(`Logged in as ${
-        client.user.tag
-    }!`);
+    console.log(`Logged in as ${client.user.tag}!`);
 });
 
 client.login(process.env.TOKEN);
@@ -22,7 +20,7 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
-const filters = ['shit'];
+const filters = ['shit', 'cunts', 'fuck', 'ass'];
 WordFilter.words = filters;
 
 client.on('message', msg => {
@@ -34,20 +32,23 @@ client.on('message', msg => {
         try {
             const args = msg.content.slice(prefix.length).trim().split(/ +/);
             const command = args.shift().toLowerCase();
+            console.log(`Running: ${command}`)
             client.commands.get(command).execute(msg, args);
+            return;
         } catch (error) {
             console.log(error);
         }
-        return;
     }
 
     //Channel specific commands
     if (msg.channel.id === '804077282494251029') {
-        try {
-            const command = client.commands.get('msg').execute(msg, client);
-        } catch (error) {
-            console.error(error);
-            msg.reply('there was an error trying to execute that command!');
-        }
+        //TODO GAME
+    }
+
+    try {
+        client.commands.get('msg').execute(msg, client);
+
+    } catch (error) {
+        console.error(error);
     }
 });
