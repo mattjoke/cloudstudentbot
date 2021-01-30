@@ -1,4 +1,4 @@
-const PermissionCheck = require('./permissions');
+const PermissionCheck = require('../static/permissions');
 
 module.exports = {
     name: 'kick',

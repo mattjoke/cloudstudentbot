@@ -1,4 +1,4 @@
-const WordFilter = require("./init");
+const WordFilter = require("../static/init");
 const Discord = require('discord.js');
 
 module.exports = {

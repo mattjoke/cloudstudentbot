@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const WordFilter = require('./init');
+const WordFilter = require('../static/init');
 
 module.exports = {
     name: 'choose',
