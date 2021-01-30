@@ -8,11 +8,11 @@ const prefix = '!';
 
 require('dotenv').config();
 
+client.login(process.env.TOKEN);
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.login(process.env.TOKEN);
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {
@@ -20,6 +20,7 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
+//Init filter
 const filters = ['shit', 'cunts', 'fuck', 'ass'];
 WordFilter.words = filters;
 
@@ -32,7 +33,6 @@ client.on('message', msg => {
         try {
             const args = msg.content.slice(prefix.length).trim().split(/ +/);
             const command = args.shift().toLowerCase();
-            console.log(`Running: ${command}`)
             client.commands.get(command).execute(msg, args);
             return;
         } catch (error) {
@@ -52,3 +52,5 @@ client.on('message', msg => {
         console.error(error);
     }
 });
+
+//client.destroy()
