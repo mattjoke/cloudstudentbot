@@ -14,10 +14,5 @@ module.exports = {
             .addField("!choose (first) (second)", "vyberie jednu možnosť ")
             .setTimestamp()
         message.channel.send(embed);
-
-        if (args.length == 0) {
-            const choice = Math.random() < 0.5 ? 'heads' : 'tails';
-
-        }
     }
 };
